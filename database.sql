@@ -56,3 +56,13 @@ CREATE TABLE `laporan` (
   CONSTRAINT `laporan_modul` FOREIGN KEY (`modul_id`) REFERENCES `modul` (`id`) ON DELETE CASCADE,
   CONSTRAINT `laporan_mahasiswa` FOREIGN KEY (`mahasiswa_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE pendaftaran (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    mahasiswa_id INT NOT NULL,
+    praktikum_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY (mahasiswa_id, praktikum_id),
+    FOREIGN KEY (mahasiswa_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (praktikum_id) REFERENCES praktikum(id) ON DELETE CASCADE
+);
